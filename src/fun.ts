@@ -17,7 +17,7 @@ export const tap = curry((fn, x) => {
 export const trace = label =>
   tap(x => console.log(`== ${label}:\n` + pretty(x)));
 
-export const parallel = (...fns) => x => fns.map(fn => fn(x));
+export const fmap = (...fns) => x => fns.map(fn => fn(x));
 
 export const split = curry((splitOn, str) => str.split(splitOn));
 
