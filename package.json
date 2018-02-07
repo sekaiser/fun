@@ -23,7 +23,7 @@
     "watch": "npm run build -- --watch",
     "watch:test": "npm run test -- --watch",
     "changelog": "standard-version",
-    "release": "yarn reset && yarn changelog",
+    "release": "yarn reset && yarn build && yarn changelog",
     "reset": "git clean -dfx && git reset --hard && yarn"
   },
   "scripts-info": {
