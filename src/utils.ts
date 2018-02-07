@@ -1,4 +1,4 @@
-export const wait = t => (res, rej) => (res, t) =>
+export const wait = t => (res, t) =>
   setTimeout(() => {
     res(true);
   }, t);
