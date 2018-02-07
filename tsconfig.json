@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "alwaysStrict": true,
+        "sourceMap": true,
+        "inlineSources": true,
+        "noUnusedLocals": true,
+        "noEmitHelpers": false,
+        "noImplicitAny": false,
+        "declaration": true,
+        "skipLibCheck": false,
+        "stripInternal": true,
+        "allowSyntheticDefaultImports": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "types": [
+            "chai",
+            "debug",
+            "mocha",
+            "node"
+        ],
+        "lib": [
+            "es2015",
+            "es2016.array.include"
+        ]
+    },
+    "include": [
+        "./src/**/*.ts"
+    ],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "src/**/*.spec.ts"
+    ]
+}
