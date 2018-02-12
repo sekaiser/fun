@@ -1,5 +1,13 @@
 import { pretty } from 'js-object-pretty-print';
-import { has, entries, toObj, isObject } from './utils';
+import {
+  has,
+  entries,
+  toObj,
+  isObject,
+  isBoolean,
+  isString,
+  isNumber,
+} from './utils';
 
 export const curry = fn => (...args) => fn.bind(null, ...args);
 
@@ -49,10 +57,15 @@ export const take = curry((n: number, arr: any[]) => {
 });
 
 export const rename = (val, fn) => {
+  if (val === undefined || val === null) return val;
+  if (isString(val)) return val;
+  if (isNumber(val)) return val;
+  if (isBoolean(val)) return val;
+
   if (isObject(val)) {
     return Object.keys(val).reduce((acc, key) => {
       const newKey = fn(key);
-      const temp = acc[key];
+      const temp = rename(acc[key], fn);
       delete acc[key];
       acc[newKey] = temp;
       return acc;
@@ -60,7 +73,7 @@ export const rename = (val, fn) => {
   }
   if (Array.isArray(val)) {
     for (let i = 0; i < val.length; i += 1) {
-      val[i][0] = fn(val[i][0]);
+      val[i] = rename(val[i], fn);
     }
   }
   return val;

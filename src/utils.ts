@@ -28,3 +28,15 @@ export const isObject = O =>
 
 export const isFunction = O =>
   Object.prototype.toString.call(O) === '[object Function]';
+
+export const isString = O =>
+  Object.prototype.toString.call(O) === '[object String]';
+
+export const isNumber = O =>
+  Object.prototype.toString.call(O) === '[object Number]';
+
+export const isBoolean = O =>
+  Object.prototype.toString.call(O) === '[object Boolean]';
+
+export const isSymbol = O =>
+  Object.prototype.toString.call(O) === '[object Symbol]';
