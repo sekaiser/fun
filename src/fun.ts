@@ -86,8 +86,9 @@ export const renameKeys = curry((keyMap, val) => {
     return Object.keys(keyMap).reduce((acc, oldName) => {
       if (has(val, oldName)) {
         const newName = keyMap[oldName];
+        const temp = acc[oldName];
         delete acc[oldName];
-        acc[newName] = val[oldName];
+        acc[newName] = temp;
       }
       return acc;
     }, val);
