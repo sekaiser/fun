@@ -39,6 +39,32 @@ export const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
 export const substr = curry((start, end, str) =>
   str.substring(str.indexOf(start) + 1, str.indexOf(end)),
 );
+export const take = curry((n: number, arr: any[]) => {
+  const result = [];
+  let l = n;
+  for (let i = 0; i < arr.length && l > 0; i += 1, l -= 1) {
+    result.push(arr[i]);
+  }
+  return result;
+});
+
+export const rename = (val, fn) => {
+  if (isObject(val)) {
+    return Object.keys(val).reduce((acc, key) => {
+      const newKey = fn(key);
+      const temp = acc[key];
+      delete acc[key];
+      acc[newKey] = temp;
+      return acc;
+    }, val);
+  }
+  if (Array.isArray(val)) {
+    for (let i = 0; i < val.length; i += 1) {
+      val[i][0] = fn(val[i][0]);
+    }
+  }
+  return val;
+};
 
 export const renameKeys = curry((keyMap, val) => {
   if (keyMap === undefined) return val;
@@ -47,8 +73,8 @@ export const renameKeys = curry((keyMap, val) => {
     return Object.keys(keyMap).reduce((acc, oldName) => {
       if (has(val, oldName)) {
         const newName = keyMap[oldName];
-        acc[newName] = val[oldName];
         delete acc[oldName];
+        acc[newName] = val[oldName];
       }
       return acc;
     }, val);
@@ -61,5 +87,6 @@ export const renameKeys = curry((keyMap, val) => {
     }
     return val;
   }
+
   return val;
 });

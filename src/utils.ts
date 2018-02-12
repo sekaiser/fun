@@ -25,3 +25,6 @@ export const toObj = arr =>
 
 export const isObject = O =>
   Object.prototype.toString.call(O) === '[object Object]';
+
+export const isFunction = O =>
+  Object.prototype.toString.call(O) === '[object Function]';
