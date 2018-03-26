@@ -66,7 +66,7 @@ export const rename = (val, fn) => {
     return Object.keys(val).reduce((acc, key) => {
       const newKey = fn(key);
       const temp = rename(acc[key], fn);
-      delete acc[key];
+      acc[key] = null;
       acc[newKey] = temp;
       return acc;
     }, val);
